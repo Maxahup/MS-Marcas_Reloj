@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: MS-Marcas_Reloj
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081
+  datasource:
+    url: jdbc:mysql://localhost:3306/muebleStgo_marca_reloj
+    username: root
+    password: Stark021
+  jpa:
+    hibernate:
+      ddl-auto: update
