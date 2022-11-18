@@ -42,7 +42,7 @@ public class marca_relojController {
     public ResponseEntity<List<Marca_reloj>> saveAll(@RequestBody List<Marca_reloj> marcas_reloj){
         int cantidad_marcas = marcas_reloj.size();
         for (int i=0 ; i<cantidad_marcas ; i++){
-            Marca_reloj nuevaMarca = Services.marcas_relojService.save(marcas_reloj.get(i));
+            Marca_reloj nuevaMarca = marcas_relojService.save(marcas_reloj.get(i));
         }
         return ResponseEntity.ok((marcas_reloj));
     }
