@@ -84,14 +84,11 @@ public class marcas_relojService {
                     }
                      */
                 }
-
             }
-
+            Marca_reloj nuevaMarca = new Marca_reloj(rutsRegistrados.get(i), min_10,min_25,min_45,ausencia );
+            marcasGeneradas.add(nuevaMarca);
 
         }
-
-
-
         return marcasGeneradas;
     }
 

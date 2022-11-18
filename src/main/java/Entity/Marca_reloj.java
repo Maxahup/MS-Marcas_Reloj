@@ -21,6 +21,14 @@ public class Marca_reloj {
     private Integer min_45;
     private Integer ausencia;
 
+    public Marca_reloj(String rut, Integer min_10, Integer min_25, Integer min_45, Integer ausencia) {
+        this.rut = rut;
+        this.min_10 = min_10;
+        this.min_25 = min_25;
+        this.min_45 = min_45;
+        this.ausencia = ausencia;
+    }
+
     public Marca_reloj(Integer id, String rut, Integer min_10, Integer min_25, Integer min_45, Integer ausencia) {
         this.id = id;
         this.rut = rut;
