@@ -34,27 +34,30 @@ public class marcas_relojService {
         return nuevaMarca_reloj;
     }
 
-    public String[] saveData(MultipartFile file){
+    public List<Marca_reloj> saveData(MultipartFile file){
         if(!file.isEmpty()){
             try {
                 byte [] bytes=file.getBytes();
                 String str = new String(bytes, StandardCharsets.UTF_8);
                 String[] data = str.split("\n");
-                generarMarcas(data);
-
+                System.out.println("Archivo separado.");
+                //List<Marca_reloj> generadas = generarMarcas(data);
+                //return generadas;
+                return null;
             }catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         return null;
     }
-
-    public List<Marca_reloj> generarMarcas(String[] arrayLecturas){
+    /*
+    public ArrayList<Marca_reloj> generarMarcas(String[] arrayLecturas){
         //en esta lista se almacenan las marcas de reloj creadas para cada trabajador
-        List<Marca_reloj> marcasGeneradas = new ArrayList<Marca_reloj>();
+        ArrayList<Marca_reloj> marcasGeneradas = new ArrayList<Marca_reloj>();
         ArrayList<String> rutsRegistrados = new ArrayList<String>();
         //Integer cantidadLecturas = arrayLecturas.size();
-        Integer cantidadLecturas = arrayLecturas.length;
+        int cantidadLecturas = arrayLecturas.length;
+
         //ciclo para encontrar todos los ruts registrados
         for (int i=0 ; i<cantidadLecturas ; i++){
             String lecturaActual = arrayLecturas[i];
@@ -63,6 +66,7 @@ public class marcas_relojService {
             if(!rutsRegistrados.contains(lecturaSeparada[2])){
                 rutsRegistrados.add(lecturaSeparada[2]);
             }
+            System.out.println(rutsRegistrados);
         }
         //ciclo para generar las marcas de cada uno de los ruts
         for (int i=0 ; i< rutsRegistrados.size() ; i++ ){
@@ -97,13 +101,13 @@ public class marcas_relojService {
                             ausencia=ausencia+1;
                         }
                     }
-                    /*Este segmento de codigo se encuentra deshabilitad debido a no ser un requerimiento
-                    el implementar la autorizacion de horas extras (sin autorizacion no se pagan las horas extras)
+                    //Este segmento de codigo se encuentra deshabilitad debido a no ser un requerimiento
+                    //el implementar la autorizacion de horas extras (sin autorizacion no se pagan las horas extras)
 
-                    if (horaLeida>18 && horaLeida<24){
-                        horasExtras=horasExtras+(horaLeida-18);
-                    }
-                     */
+                    //if (horaLeida>18 && horaLeida<24){
+                    //    horasExtras=horasExtras+(horaLeida-18);
+                    // }
+
                 }
             }
             Marca_reloj nuevaMarca = new Marca_reloj(rutsRegistrados.get(i), min_10,min_25,min_45,ausencia );
@@ -112,7 +116,7 @@ public class marcas_relojService {
         }
         return marcasGeneradas;
     }
-
+    */
 }
 
 

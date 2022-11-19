@@ -1,6 +1,6 @@
 spring:
   application:
-    name: MS-Marcas_Reloj
+    name: MS-Marcas
   cloud:
     config:
       enabled: true

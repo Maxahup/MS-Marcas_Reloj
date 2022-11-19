@@ -1,6 +1,8 @@
 package Entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,17 +12,20 @@ import javax.persistence.Id;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Marca_reloj {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String rut;
-    private Integer min_10;
-    private Integer min_25;
-    private Integer min_45;
-    private Integer ausencia;
+    private int min_10;
+    private int min_25;
+    private int min_45;
+    private int ausencia;
 
+    /*
     public Marca_reloj(String rut, Integer min_10, Integer min_25, Integer min_45, Integer ausencia) {
         this.rut = rut;
         this.min_10 = min_10;
@@ -89,4 +94,6 @@ public class Marca_reloj {
     public void setAusencia(Integer ausencia) {
         this.ausencia = ausencia;
     }
+
+    */
 }
