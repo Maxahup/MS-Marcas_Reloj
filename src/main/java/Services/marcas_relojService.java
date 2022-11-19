@@ -6,7 +6,10 @@ import Repository.marcas_relojRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +34,31 @@ public class marcas_relojService {
         return nuevaMarca_reloj;
     }
 
-    public List<Marca_reloj> generarMarcas(ArrayList<String> arrayLecturas){
+    public String[] saveData(MultipartFile file){
+        if(!file.isEmpty()){
+            try {
+                byte [] bytes=file.getBytes();
+                String str = new String(bytes, StandardCharsets.UTF_8);
+                String[] data = str.split("\n");
+                generarMarcas(data);
+
+            }catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return null;
+    }
+
+    public List<Marca_reloj> generarMarcas(String[] arrayLecturas){
         //en esta lista se almacenan las marcas de reloj creadas para cada trabajador
         List<Marca_reloj> marcasGeneradas = new ArrayList<Marca_reloj>();
         ArrayList<String> rutsRegistrados = new ArrayList<String>();
-        Integer cantidadLecturas = arrayLecturas.size();
+        //Integer cantidadLecturas = arrayLecturas.size();
+        Integer cantidadLecturas = arrayLecturas.length;
         //ciclo para encontrar todos los ruts registrados
         for (int i=0 ; i<cantidadLecturas ; i++){
-            String lecturaActual = arrayLecturas.get(i);
+            String lecturaActual = arrayLecturas[i];
+            //String lecturaActual = arrayLecturas.get(i);
             String[] lecturaSeparada = lecturaActual.split(";");
             if(!rutsRegistrados.contains(lecturaSeparada[2])){
                 rutsRegistrados.add(lecturaSeparada[2]);
@@ -52,7 +72,8 @@ public class marcas_relojService {
             int ausencia=0;
             int horasExtras=0;
             for (int j =0; j< cantidadLecturas; j++){
-                String marcaActual = arrayLecturas.get(j);
+                String marcaActual = arrayLecturas[j];
+                //String marcaActual = arrayLecturas.get(j);
                 String[] marcaSeparada = marcaActual.split(";");
                 if (marcaSeparada[2].equals(rutsRegistrados.get(i))){
                     //obtiene la hor en formato hh:mm

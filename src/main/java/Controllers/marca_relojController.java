@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/marca_reloj")
+@RequestMapping("/marca-reloj")
 public class marca_relojController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class marca_relojController {
         return ResponseEntity.ok(Nueva_marca_reloj);
     }
 
-    @PostMapping()
+    @PostMapping("/subir-marcas")
     public ResponseEntity<List<Marca_reloj>> saveAll(@RequestBody List<Marca_reloj> marcas_reloj){
         int cantidad_marcas = marcas_reloj.size();
         for (int i=0 ; i<cantidad_marcas ; i++){
